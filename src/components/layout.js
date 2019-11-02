@@ -71,7 +71,7 @@ const Layout = ({ children }) => {
           title
         }
       }
-      strapiPicture(id: { eq: "Picture_2" }) {
+      strapiLargeimages(current: { eq: true }) {
         id
         picture {
           childImageSharp {
@@ -83,14 +83,17 @@ const Layout = ({ children }) => {
       }
     }
   `)
-
+  console.log(data.strapiLargeimages)
   return (
     <>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <LargeImage
-          image={data.strapiPicture.picture.childImageSharp.fixed.src}
-        />
+        {
+          <LargeImage
+            image={data.strapiLargeimages.picture.childImageSharp.fixed.src}
+          />
+        }
+
         <Header
           brand={data.site.siteMetadata.title}
           fixed
