@@ -178,6 +178,7 @@ export default function Header(props) {
   }
   const headerColorChange = () => {
     const { color, changeColorOnScroll } = props
+
     const windowsScrollTop = window.pageYOffset
     if (windowsScrollTop > changeColorOnScroll.height) {
       document.body
@@ -195,22 +196,17 @@ export default function Header(props) {
         .classList.remove(classes[changeColorOnScroll.color])
     }
   }
-  const { color, rightLinks, leftLinks, brand, fixed, absolute } = props
-  const appBarClasses = classNames({
-    [classes.appBar]: true,
-    [classes[color]]: color,
-    [classes.absolute]: absolute,
-    [classes.fixed]: fixed,
-  })
+  const { rightLinks, leftLinks, brand } = props
+
   const brandComponent = (
-    <Button className={classes.title}>
+    <Button>
       <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         {brand}
       </Link>
     </Button>
   )
   return (
-    <AppBar className={appBarClasses}>
+    <AppBar>
       <Toolbar className={classes.container}>
         {leftLinks !== undefined ? brandComponent : null}
         <div className={classes.flex}>
