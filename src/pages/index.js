@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 const IndexPage = ({ data, width }) => {
   const classes = useStyles()
   return (
-    <Layout>
+    <Layout noRaise>
       <Grid container justify="center" spacing={2}>
         {data.allStrapiPost.edges.map((document, i) => {
           console.log(document.node.Image.childImageSharp)

@@ -62,7 +62,7 @@ const theme = createMuiTheme({
   },
 })
 
-const Layout = ({ children }) => {
+const Layout = ({ children, noRaise }) => {
   const classes = useStyles()
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -83,7 +83,6 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  console.log(data.strapiLargeimages)
   return (
     <>
       <CssBaseline />
@@ -106,11 +105,15 @@ const Layout = ({ children }) => {
         <Grid container spacing={3} alignItems="center" justify="center">
           <Grid item xs={12}>
             <Box justifyContent="center">
-              <Container fixed>
-                <div className={classNames(classes.main, classes.mainRaised)}>
-                  <main>{children}</main>
-                </div>
-              </Container>
+              <div
+                className={
+                  typeof noRaise == "undefined" || noRaise == false
+                    ? classNames(classes.main, classes.mainRaised)
+                    : classNames(classes.main)
+                }
+              >
+                <main>{children}</main>
+              </div>
             </Box>
           </Grid>
         </Grid>
