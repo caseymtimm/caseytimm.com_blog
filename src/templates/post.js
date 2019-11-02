@@ -37,10 +37,10 @@ const PostTemplate = ({ data }) => {
           <Typography variant="h1" paragraph>
             {data.strapiPost.Title}
           </Typography>
-          <Typography variant="subtitle" paragraph>
+          <Typography variant="subtitle">
             {data.strapiPost.ShortText}
           </Typography>
-          <Typography variant="subtitle">
+          <Typography variant="subtitle" paragraph>
             by{" "}
             <Link to={`/authors/User_${data.strapiPost.user.id}`}>
               {data.strapiPost.user.username}
