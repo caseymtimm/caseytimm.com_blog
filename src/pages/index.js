@@ -1,14 +1,15 @@
 import React from "react"
-import { Link, graphql, Image } from "gatsby"
+import { Link, graphql } from "gatsby"
+import Image from "gatsby-image"
 import Layout from "../components/layout"
 import withWidth from "@material-ui/core/withWidth"
 import Card from "@material-ui/core/Card"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
-import CardMedia from "@material-ui/core/CardMedia"
+//import CardMedia from "@material-ui/core/CardMedia"
 import { makeStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
-import { Grid } from "@material-ui/core"
+import { Grid, Box } from "@material-ui/core"
 
 const useStyles = makeStyles({
   card: {
@@ -27,19 +28,27 @@ const IndexPage = ({ data, width }) => {
         {data.allStrapiPost.edges.map((document, i) => {
           console.log(document.node.Image.childImageSharp)
           return (
-            <Grid item xs={i % 3 == 0 ? 11 : 5}>
+            <Grid item xs={i % 3 === 0 ? 11 : 5}>
               <Card className={classes.card}>
                 <CardActionArea>
                   <Link
                     to={`/${document.node.id}`}
                     style={{ textDecoration: "none" }}
                   >
-                    <CardMedia
-                      component={Image}
-                      className={classes.media}
-                      image={document.node.Image.childImageSharp.fixed.src}
-                      title={document.node.Title}
-                    />
+                    <Grid
+                      container
+                      spacing={0}
+                      direction="column"
+                      alignItems="center"
+                      justify="center"
+                    >
+                      <Grid item xs={12}>
+                        <Image
+                          style={{ margin: "auto" }}
+                          fixed={document.node.Image.childImageSharp.fixed}
+                        />
+                      </Grid>
+                    </Grid>
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2">
                         {document.node.Title}
@@ -72,8 +81,13 @@ export const pageQuery = graphql`
         node {
           Image {
             childImageSharp {
-              fixed {
+              fixed(background: "black", height: 100, quality: 100) {
+                base64
+                aspectRatio
+                width
+                height
                 src
+                srcSet
               }
             }
           }
