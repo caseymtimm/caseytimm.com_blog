@@ -21,13 +21,14 @@ import Paper from "@material-ui/core/Paper"
 import { Grid, Container, Box } from "@material-ui/core"
 import LargeImage from "./header/LargeImage"
 
-let theme = createMuiTheme({
-  palette: {
-    type: "dark",
-    primary: orange,
-  },
-})
-theme = responsiveFontSizes(theme)
+const theme = responsiveFontSizes(
+  createMuiTheme({
+    palette: {
+      type: "dark",
+      primary: orange,
+    },
+  })
+)
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
