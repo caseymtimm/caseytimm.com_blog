@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
         id
         picture {
           childImageSharp {
-            fixed {
+            original {
               src
             }
           }
@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
         <CssBaseline />
         {
           <LargeImage
-            image={data.strapiLargeimages.picture.childImageSharp.fixed.src}
+            image={data.strapiLargeimages.picture.childImageSharp.original.src}
           />
         }
 
