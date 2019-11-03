@@ -8,7 +8,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
+import {
+  createMuiTheme,
+  ThemeProvider,
+  responsiveFontSizes,
+} from "@material-ui/core/styles"
 import { orange } from "@material-ui/core/colors"
 import Header from "./header/header.js"
 import "./layout.css"
@@ -17,12 +21,13 @@ import Paper from "@material-ui/core/Paper"
 import { Grid, Container, Box } from "@material-ui/core"
 import LargeImage from "./header/LargeImage"
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
     type: "dark",
     primary: orange,
   },
 })
+theme = responsiveFontSizes(theme)
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
