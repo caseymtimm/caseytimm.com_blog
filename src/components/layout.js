@@ -66,7 +66,7 @@ const Layout = ({ children }) => {
           fixed
           color="transparent"
           changeColorOnScroll={{
-            height: 400,
+            height: 200,
             color: theme.palette.background.default,
           }}
         />
