@@ -51,7 +51,7 @@ export default withWidth()(IndexPage)
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allStrapiPost {
+    allStrapiPost(sort: { fields: id, order: DESC }) {
       edges {
         node {
           Image {
