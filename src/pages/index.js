@@ -1,22 +1,25 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-import Image from "gatsby-image"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import withWidth from "@material-ui/core/withWidth"
-import Card from "@material-ui/core/Card"
-import CardActionArea from "@material-ui/core/CardActionArea"
-import CardContent from "@material-ui/core/CardContent"
-//import CardMedia from "@material-ui/core/CardMedia"
 import { makeStyles } from "@material-ui/core/styles"
-import Typography from "@material-ui/core/Typography"
-import { Grid, Box } from "@material-ui/core"
+import { Grid } from "@material-ui/core"
+import PostBox from "../components/postBox"
 
 const useStyles = makeStyles({
   card: {
-    //width: 250,
+    height: 110,
+    display: "flex",
   },
-  media: {
-    height: 100,
+  content: {
+    flex: "1 0 auto",
+  },
+  postImage: {
+    wdith: 151,
+  },
+  details: {
+    display: "flex",
+    flexDirection: "column",
   },
 })
 
@@ -26,44 +29,16 @@ const IndexPage = ({ data, width }) => {
     <Layout noRaise>
       <Grid container justify="center" spacing={2}>
         {data.allStrapiPost.edges.map((document, i) => {
-          console.log(document.node.Image.childImageSharp)
+          let { Title, ShortText } = document.node
+          console.log(document.node)
           return (
-            <Grid item xs={i % 3 === 0 ? 11 : 5}>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <Link
-                    to={`/${document.node.id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Grid
-                      container
-                      spacing={0}
-                      direction="column"
-                      alignItems="center"
-                      justify="center"
-                    >
-                      <Grid item xs={12}>
-                        <Image
-                          style={{ margin: "auto" }}
-                          fixed={document.node.Image.childImageSharp.fixed}
-                        />
-                      </Grid>
-                    </Grid>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {document.node.Title}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                      >
-                        {document.node.ShortText}
-                      </Typography>
-                    </CardContent>
-                  </Link>
-                </CardActionArea>
-              </Card>
+            <Grid key={Title + ShortText} item xs={i % 3 === 0 ? 11 : 5}>
+              <PostBox
+                location={`/${document.node.id}`}
+                title={Title}
+                shortText={ShortText}
+                image={document.node.Image.childImageSharp.fixed.src}
+              ></PostBox>
             </Grid>
           )
         })}
@@ -81,7 +56,7 @@ export const pageQuery = graphql`
         node {
           Image {
             childImageSharp {
-              fixed(background: "black", height: 100, quality: 100) {
+              fixed(background: "black", height: 110, quality: 100) {
                 base64
                 aspectRatio
                 width
