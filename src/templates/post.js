@@ -31,37 +31,25 @@ const PostTemplate = ({ data }) => {
   const classes = useStyles()
   return (
     <Layout>
-      <Grid container>
-        <Grid xs="3" />
-        <Grid xs="6">
-          <Typography variant="h1" paragraph>
-            {data.strapiPost.Title}
-          </Typography>
-          <Typography variant="subtitle">
-            {data.strapiPost.ShortText}
-          </Typography>
-          <Typography variant="subtitle" paragraph>
-            by{" "}
-            <Link to={`/authors/User_${data.strapiPost.user.id}`}>
-              {data.strapiPost.user.username}
-            </Link>
-          </Typography>
-        </Grid>
-        <Grid xs="3" />
-        <Grid xs="12">
-          <Box display="flex" justifyContent="center">
-            <Img
-              fixed={data.strapiPost.Image.childImageSharp.fixed}
-              className={classes.mainImage}
-            />
-          </Box>
-        </Grid>
-        <Grid xs="1" />
-        <Grid xs="10">
-          <ReactMarkdown source={data.strapiPost.Content} />
-        </Grid>
-        <Grid xs="1" />
-      </Grid>
+      <Typography variant="h1" paragraph>
+        {data.strapiPost.Title}
+      </Typography>
+      <Box display="flex" justifyContent="center">
+        <Img
+          fixed={data.strapiPost.Image.childImageSharp.fixed}
+          className={classes.mainImage}
+        />
+      </Box>
+
+      <Typography variant="subtitle">{data.strapiPost.ShortText}</Typography>
+      <Typography variant="subtitle" paragraph>
+        by{" "}
+        <Link to={`/authors/User_${data.strapiPost.user.id}`}>
+          {data.strapiPost.user.username}
+        </Link>
+      </Typography>
+
+      <ReactMarkdown source={data.strapiPost.Content} />
     </Layout>
   )
 }
