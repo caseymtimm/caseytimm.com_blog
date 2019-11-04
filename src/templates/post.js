@@ -50,6 +50,7 @@ const PostTemplate = ({ data }) => {
       </Typography>
 
       <ReactMarkdown source={data.strapiPost.Content} />
+      <br />
     </Layout>
   )
 }
