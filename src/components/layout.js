@@ -20,6 +20,7 @@ import CssBaseline from "@material-ui/core/CssBaseline"
 import Paper from "@material-ui/core/Paper"
 import { Grid, Container, Box } from "@material-ui/core"
 import LargeImage from "./header/LargeImage"
+import HeaderLinks from "./header/HeaderLinks"
 
 const theme = responsiveFontSizes(
   createMuiTheme({
@@ -69,6 +70,7 @@ const Layout = ({ children }) => {
             height: 200,
             color: theme.palette.background.default,
           }}
+          rightLinks={<HeaderLinks />}
         />
         <Grid container spacing={3} alignItems="center" justify="center">
           <Grid item xs={12}>
