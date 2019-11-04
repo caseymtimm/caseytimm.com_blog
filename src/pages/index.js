@@ -30,7 +30,6 @@ const IndexPage = ({ data, width }) => {
       <Grid container justify="center" spacing={2}>
         {data.allStrapiPost.edges.map((document, i) => {
           let { Title, ShortText } = document.node
-          console.log(document.node)
           return (
             <Grid key={Title + ShortText} item xs={i % 3 === 0 ? 11 : 5}>
               <PostBox
