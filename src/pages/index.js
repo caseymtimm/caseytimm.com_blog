@@ -34,7 +34,7 @@ const IndexPage = ({ data, width }) => {
           return (
             <Grid key={Title + ShortText} item xs={i % 3 === 0 ? 11 : 5}>
               <PostBox
-                location={`/${document.node.id}`}
+                location={`/post/${document.node.id}`}
                 title={Title}
                 shortText={ShortText}
                 image={document.node.Image.childImageSharp.fixed.src}

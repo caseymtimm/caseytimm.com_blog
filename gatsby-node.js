@@ -36,7 +36,7 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each article.
     result.data.allStrapiPost.edges.forEach(({ node }) => {
       createPage({
-        path: `/${node.id}`,
+        path: `/post/${node.id}`,
         component: path.resolve(`src/templates/post.js`),
         context: {
           id: node.id,
