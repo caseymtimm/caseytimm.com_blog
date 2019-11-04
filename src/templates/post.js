@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
-import { Box, Typography, Grid } from "@material-ui/core"
+import { Box, Typography, Grid, Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles({
@@ -31,26 +31,28 @@ const PostTemplate = ({ data }) => {
   const classes = useStyles()
   return (
     <Layout>
-      <Typography variant="h1" paragraph>
-        {data.strapiPost.Title}
-      </Typography>
-      <Box display="flex" justifyContent="center">
-        <Img
-          fixed={data.strapiPost.Image.childImageSharp.fixed}
-          className={classes.mainImage}
-        />
-      </Box>
+      <Container flex>
+        <Typography variant="h1" paragraph>
+          {data.strapiPost.Title}
+        </Typography>
+        <Box display="flex" justifyContent="center">
+          <Img
+            fixed={data.strapiPost.Image.childImageSharp.fixed}
+            className={classes.mainImage}
+          />
+        </Box>
 
-      <Typography variant="subtitle">{data.strapiPost.ShortText}</Typography>
-      <Typography variant="subtitle" paragraph>
-        by{" "}
-        <Link to={`/authors/User_${data.strapiPost.user.id}`}>
-          {data.strapiPost.user.username}
-        </Link>
-      </Typography>
+        <Typography variant="subtitle">{data.strapiPost.ShortText}</Typography>
+        <Typography variant="subtitle" paragraph>
+          by{" "}
+          <Link to={`/authors/User_${data.strapiPost.user.id}`}>
+            {data.strapiPost.user.username}
+          </Link>
+        </Typography>
 
-      <ReactMarkdown source={data.strapiPost.Content} />
-      <br />
+        <ReactMarkdown source={data.strapiPost.Content} />
+        <br />
+      </Container>
     </Layout>
   )
 }
