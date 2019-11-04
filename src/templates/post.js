@@ -43,13 +43,16 @@ const PostTemplate = ({ data }) => {
         </Box>
 
         <Typography variant="subtitle">{data.strapiPost.ShortText}</Typography>
-        <Typography variant="subtitle" paragraph>
+        <Typography paragraph variant="subtitle">
           by{" "}
           <Link to={`/authors/User_${data.strapiPost.user.id}`}>
             {data.strapiPost.user.username}
           </Link>
+          {` at ${data.strapiPost.created_at}`}
+          {data.strapiPost.updated_at !== data.strapiPost.created_at
+            ? ` and updated at ${data.strapiPost.updated_at}`
+            : ""}
         </Typography>
-
         <ReactMarkdown source={data.strapiPost.Content} />
         <br />
       </Container>
@@ -80,6 +83,8 @@ export const query = graphql`
         id
         username
       }
+      updated_at(formatString: "MM-DD-YY HH:MM")
+      created_at(formatString: "MM-DD-YY HH:MM")
     }
   }
 `
