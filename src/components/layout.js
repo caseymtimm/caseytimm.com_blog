@@ -21,6 +21,7 @@ import Paper from "@material-ui/core/Paper"
 import { Grid, Container, Box } from "@material-ui/core"
 import HeaderLinks from "./header/HeaderLinks"
 import Img from "gatsby-image"
+import useWindowSize from "@rooks/use-window-size"
 
 const theme = responsiveFontSizes(
   createMuiTheme({
@@ -32,7 +33,7 @@ const theme = responsiveFontSizes(
 )
 
 const Layout = props => {
-  let { children, largeImage } = props
+  let { children, largeImage, coverPrecent } = props
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -46,26 +47,30 @@ const Layout = props => {
           childImageSharp {
             fluid(quality: 100) {
               ...GatsbyImageSharpFluid
+              aspectRatio
             }
           }
         }
       }
     }
   `)
-  console.log({ props, largeImage })
+  const { outerWidth } = useWindowSize()
+  let image =
+    typeof largeImage === "undefined"
+      ? data.strapiLargeimages.picture.childImageSharp.fluid
+      : largeImage
+
+  console.log({
+    outerWidth,
+    coverPrecent,
+    ratio: image.aspectRatio,
+    height: `-${(outerWidth * (coverPrecent / 100)) / image.aspectRatio}px`,
+  })
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {
-          <Img
-            fluid={
-              typeof largeImage === "undefined"
-                ? data.strapiLargeimages.picture.childImageSharp.fluid
-                : largeImage
-            }
-          />
-        }
+        {<Img style={{ marginTop: "100px" }} fluid={image} />}
 
         <Header
           brand={data.site.siteMetadata.title}
@@ -80,7 +85,14 @@ const Layout = props => {
         <Grid container spacing={3} alignItems="center" justify="center">
           <Grid item xs={12}>
             <Box justifyContent="center">
-              <Container style={{ position: "relative", zIndex: "3" }}>
+              <Container
+                style={{
+                  position: "relative",
+                  zIndex: "3",
+                  marginTop: `-${(outerWidth * (coverPrecent / 100)) /
+                    image.aspectRatio}px`,
+                }}
+              >
                 <Paper>{children}</Paper>
               </Container>
             </Box>

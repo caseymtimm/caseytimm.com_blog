@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 const IndexPage = ({ data, width }) => {
   const classes = useStyles()
   return (
-    <Layout noRaise>
+    <Layout noRaise coverPrecent="50">
       <Grid container justify="center" spacing={2}>
         {data.allStrapiPost.edges.map((document, i) => {
           let { Title, ShortText } = document.node

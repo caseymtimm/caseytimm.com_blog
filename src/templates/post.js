@@ -6,7 +6,10 @@ import { Typography, Container } from "@material-ui/core"
 
 const PostTemplate = ({ data }) => {
   return (
-    <Layout largeImage={data.strapiPost.Image.childImageSharp.fluid}>
+    <Layout
+      largeImage={data.strapiPost.Image.childImageSharp.fluid}
+      coverPrecent={25}
+    >
       <Container flex>
         <Typography variant="h1" paragraph>
           {data.strapiPost.Title}
