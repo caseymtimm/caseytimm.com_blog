@@ -19,8 +19,8 @@ import "./layout.css"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import Paper from "@material-ui/core/Paper"
 import { Grid, Container, Box } from "@material-ui/core"
-import LargeImage from "./header/LargeImage"
 import HeaderLinks from "./header/HeaderLinks"
+import Img from "gatsby-image"
 
 const theme = responsiveFontSizes(
   createMuiTheme({
@@ -31,7 +31,8 @@ const theme = responsiveFontSizes(
   })
 )
 
-const Layout = ({ children }) => {
+const Layout = props => {
+  let { children, largeImage } = props
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -43,22 +44,26 @@ const Layout = ({ children }) => {
         id
         picture {
           childImageSharp {
-            original {
-              src
+            fluid {
+              ...GatsbyImageSharpFluid
             }
           }
         }
       }
     }
   `)
-
+  console.log({ props, largeImage })
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {
-          <LargeImage
-            image={data.strapiLargeimages.picture.childImageSharp.original.src}
+          <Img
+            fluid={
+              typeof largeImage === "undefined"
+                ? data.strapiLargeimages.picture.childImageSharp.fluid
+                : largeImage
+            }
           />
         }
 

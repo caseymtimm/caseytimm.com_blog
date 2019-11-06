@@ -1,47 +1,16 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
-import { Box, Typography, Grid, Container } from "@material-ui/core"
-import { makeStyles } from "@material-ui/core/styles"
-
-const useStyles = makeStyles({
-  mainImage: {
-    display: "flex",
-    border: "0",
-    borderRadius: "6px",
-    padding: "0.625rem 0",
-    marginBottom: "20px",
-    color: "#555",
-    width: "100%",
-    backgroundColor: "#fff",
-    boxShadow:
-      "0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15)",
-    transition: "all 150ms ease 0s",
-    alignItems: "center",
-    flexFlow: "row nowrap",
-    justifyContent: "flex-start",
-    position: "relative",
-    zIndex: "unset",
-  },
-})
+import { Typography, Container } from "@material-ui/core"
 
 const PostTemplate = ({ data }) => {
-  const classes = useStyles()
   return (
-    <Layout>
+    <Layout largeImage={data.strapiPost.Image.childImageSharp.fluid}>
       <Container flex>
         <Typography variant="h1" paragraph>
           {data.strapiPost.Title}
         </Typography>
-        <Box display="flex" justifyContent="center">
-          <Img
-            fixed={data.strapiPost.Image.childImageSharp.fixed}
-            className={classes.mainImage}
-          />
-        </Box>
-
         <Typography variant="subtitle">{data.strapiPost.ShortText}</Typography>
         <Typography paragraph variant="subtitle">
           by{" "}
@@ -70,12 +39,8 @@ export const query = graphql`
       Content
       Image {
         childImageSharp {
-          fixed(width: 500) {
-            base64
-            width
-            height
-            src
-            srcSet
+          fluid {
+            ...GatsbyImageSharpFluid
           }
         }
       }

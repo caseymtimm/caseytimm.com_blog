@@ -8,25 +8,28 @@ import Hidden from "@material-ui/core/Hidden"
 import Drawer from "@material-ui/core/Drawer"
 import Menu from "@material-ui/icons/Menu"
 import { Link } from "gatsby"
-import {
-  container,
-  defaultFont,
-  primaryColor,
-  infoColor,
-  successColor,
-  warningColor,
-  dangerColor,
-  roseColor,
-  transition,
-  boxShadow,
-  drawerWidth,
-} from "./material-kit-react.js"
 
 import useScrollTrigger from "@material-ui/core/useScrollTrigger"
 
 const useStyles = makeStyles({
   container: {
-    ...container,
+    paddingRight: "15px",
+    paddingLeft: "15px",
+    marginRight: "auto",
+    marginLeft: "auto",
+    width: "100%",
+    "@media (min-width: 576px)": {
+      maxWidth: "540px",
+    },
+    "@media (min-width: 768px)": {
+      maxWidth: "720px",
+    },
+    "@media (min-width: 992px)": {
+      maxWidth: "960px",
+    },
+    "@media (min-width: 1200px)": {
+      maxWidth: "1140px",
+    },
     minHeight: "50px",
     flex: "1",
     alignItems: "center",
