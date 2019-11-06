@@ -44,7 +44,7 @@ const Layout = props => {
         id
         picture {
           childImageSharp {
-            fluid {
+            fluid(quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
