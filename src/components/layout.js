@@ -83,7 +83,8 @@ const Layout = props => {
           rightLinks={<HeaderLinks />}
         />
         <Grid container spacing={3} alignItems="center" justify="center">
-          <Grid item xs={12}>
+          <Grid item xs={1} />
+          <Grid item xs={10}>
             <Box justifyContent="center">
               <Container
                 style={{
@@ -97,6 +98,7 @@ const Layout = props => {
               </Container>
             </Box>
           </Grid>
+          <Grid item xs={1} />
         </Grid>
         <Grid container spacing={3} alignItems="center" justify="center">
           <Grid item xs={4}>
