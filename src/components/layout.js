@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  console.log(theme)
+
   return (
     <>
       <ThemeProvider theme={theme}>

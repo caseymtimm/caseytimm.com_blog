@@ -54,8 +54,6 @@ export default function Header(props) {
   const { rightLinks, leftLinks, brand, changeColorOnScroll } = props
   const trigger = useScrollTrigger({ threshold: changeColorOnScroll.height })
 
-  console.log({ trigger })
-
   const brandComponent = (
     <Button>
       <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
