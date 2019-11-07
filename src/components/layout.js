@@ -18,7 +18,7 @@ import Header from "./header/header.js"
 import "./layout.css"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import Paper from "@material-ui/core/Paper"
-import { Grid, Container, Box } from "@material-ui/core"
+import { Grid, Container, Box, Typography } from "@material-ui/core"
 import Img from "gatsby-image"
 import useWindowSize from "@rooks/use-window-size"
 
@@ -101,20 +101,24 @@ const Layout = props => {
         <Grid container spacing={3} alignItems="center" justify="center">
           <Grid item xs={4}>
             <Box display="flex" justifyContent="center" p={1} m={1}>
-              © {new Date().getFullYear()} Casey Timm
+              <Typography>© {new Date().getFullYear()} Casey Timm</Typography>
             </Box>
           </Grid>
           <Grid item xs={4}>
             <Box display="flex" justifyContent="center" p={1} m={1}>
-              <Link to="/contact">Contact Me!</Link>
+              <Typography>
+                <Link to="/contact">Contact Me!</Link>
+              </Typography>
             </Box>
           </Grid>
           <Grid item xs={4}>
             <Box display="flex" justifyContent="center" p={1} m={1}>
-              Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a> and{" "}
-              <a href="http://strapi.io">Strapi</a>
+              <Typography>
+                Built with
+                <a href="https://www.gatsbyjs.org">{`Gatsby`}</a>
+                {" and "}
+                <a href="http://strapi.io">{`Strapi`}</a>
+              </Typography>
             </Box>
           </Grid>
         </Grid>
