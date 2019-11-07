@@ -57,7 +57,10 @@ export default function Header(props) {
   }
 
   const { brand, changeColorOnScroll } = props
-  const trigger = useScrollTrigger({ threshold: changeColorOnScroll.height })
+  const trigger = useScrollTrigger({
+    threshold: changeColorOnScroll.height,
+    disableHysteresis: true,
+  })
 
   return (
     <AppBar className={trigger ? "" : classes.transparent}>
