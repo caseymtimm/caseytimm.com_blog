@@ -8,8 +8,10 @@ import Hidden from "@material-ui/core/Hidden"
 import Drawer from "@material-ui/core/Drawer"
 import Menu from "@material-ui/icons/Menu"
 import { Link } from "gatsby"
+import HeaderLinks from "./HeaderLinks"
 
 import useScrollTrigger from "@material-ui/core/useScrollTrigger"
+import { List, ListItem } from "@material-ui/core"
 
 const useStyles = makeStyles({
   container: {
@@ -54,31 +56,31 @@ export default function Header(props) {
     setMobileOpen(!mobileOpen)
   }
 
-  const { rightLinks, leftLinks, brand, changeColorOnScroll } = props
+  const { brand, changeColorOnScroll } = props
   const trigger = useScrollTrigger({ threshold: changeColorOnScroll.height })
 
-  const brandComponent = (
-    <Button>
-      <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-        {brand}
-      </Link>
-    </Button>
-  )
   return (
     <AppBar className={trigger ? "" : classes.transparent}>
       <Toolbar className={classes.container}>
-        {leftLinks !== undefined ? brandComponent : null}
-        <div className={classes.flex}>
-          {leftLinks !== undefined ? (
-            <Hidden smDown implementation="css">
-              {leftLinks}
-            </Hidden>
-          ) : (
-            brandComponent
-          )}
-        </div>
+        <List>
+          <ListItem>
+            <Button color="transparent">
+              <Link
+                to="/"
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {brand}
+              </Link>
+            </Button>
+          </ListItem>
+        </List>
+
         <Hidden smDown implementation="css">
-          {rightLinks}
+          <HeaderLinks horizontal />
         </Hidden>
         <Hidden mdUp>
           <IconButton
@@ -100,10 +102,7 @@ export default function Header(props) {
           }}
           onClose={handleDrawerToggle}
         >
-          <div className={classes.appResponsive}>
-            {leftLinks}
-            {rightLinks}
-          </div>
+          <HeaderLinks />
         </Drawer>
       </Hidden>
     </AppBar>
