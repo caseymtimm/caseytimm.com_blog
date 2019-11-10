@@ -31,7 +31,7 @@ const IndexPage = ({ data, width }) => {
         {data.allStrapiPost.edges.map((document, i) => {
           let { Title, ShortText } = document.node
           return (
-            <Grid key={Title + ShortText} item xs={i % 3 === 0 ? 11 : 5}>
+            <Grid key={Title + ShortText} item xs={i % 3 === 0 ? 10 : 5}>
               <PostBox
                 location={`/post/${document.node.id}`}
                 title={Title}
