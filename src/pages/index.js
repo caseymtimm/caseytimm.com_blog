@@ -36,7 +36,11 @@ const IndexPage = ({ data, width }) => {
                 location={`/post/${document.node.id}`}
                 title={Title}
                 shortText={ShortText}
-                image={document.node.Image.childImageSharp.fixed.src}
+                image={
+                  typeof document.node.Image !== "undefined"
+                    ? document.node.Image.childImageSharp.fixed.src
+                    : undefined
+                }
               ></PostBox>
             </Grid>
           )

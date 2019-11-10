@@ -5,9 +5,14 @@ import ReactMarkdown from "react-markdown"
 import { Typography, Container } from "@material-ui/core"
 
 const PostTemplate = ({ data }) => {
+  console.log(data.strapiPost)
   return (
     <Layout
-      largeImage={data.strapiPost.Image.childImageSharp.fluid}
+      largeImage={
+        data.strapiPost.Image !== "undefined"
+          ? data.strapiPost.Image.childImageSharp.fluid
+          : undefined
+      }
       coverPrecent={25}
     >
       <Container flex>
