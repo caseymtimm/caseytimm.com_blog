@@ -5,14 +5,14 @@ import useFetch from "../hooks/useFetch"
 import { Divider, Container } from "@material-ui/core"
 
 const Smarthome = () => {
-  let lights = useFetch("http://cms.caseytimm.com/hubitat/lights", {
+  let lights = useFetch("https://cms.caseytimm.com/hubitat/lights", {
     count: "loading",
   })
-  let lightson = useFetch("http://cms.caseytimm.com/hubitat/lightson", {
+  let lightson = useFetch("https://cms.caseytimm.com/hubitat/lightson", {
     count: "loading",
   })
 
-  let hvac = useFetch("http://cms.caseytimm.com/hubitat/hvac", {
+  let hvac = useFetch("https://cms.caseytimm.com/hubitat/hvac", {
     "DeviceWatch-DeviceStatus": "loading",
     coolingSetpoint: "loading",
     deviceAlive: "loading",
