@@ -4,6 +4,20 @@ import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 import { Typography, Container } from "@material-ui/core"
 
+function Image(props) {
+  return (
+    <img
+      {...props}
+      style={{
+        maxWidth: "50%",
+        display: "block",
+        marginLeft: "auto",
+        marginRight: "auto",
+      }}
+    />
+  )
+}
+
 const PostTemplate = ({ data }) => {
   console.log(data.strapiPost)
   return (
@@ -30,7 +44,10 @@ const PostTemplate = ({ data }) => {
             ? ` and updated at ${data.strapiPost.updated_at}`
             : ""}
         </Typography>
-        <ReactMarkdown source={data.strapiPost.Content} />
+        <ReactMarkdown
+          source={data.strapiPost.Content}
+          renderers={{ image: Image }}
+        />
         <br />
       </Container>
     </Layout>
