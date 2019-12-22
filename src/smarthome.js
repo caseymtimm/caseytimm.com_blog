@@ -1,16 +1,26 @@
-import React from "react"
-import Typography from "@material-ui/core/Typography"
-import Layout from "../components/layout"
-import useFetch from "../hooks/useFetch"
-import { Divider, Container } from "@material-ui/core"
+import React, { useState, useEffect } from "react";
+import Typography from "@material-ui/core/Typography";
+import { Divider, Container } from "@material-ui/core";
+
+function useFetch(url, defaultData) {
+  const [data, updateData] = useState(defaultData);
+
+  useEffect(async () => {
+    const resp = await fetch(url);
+    const json = await resp.json();
+    updateData(json);
+  }, [url]);
+
+  return data;
+}
 
 const Smarthome = () => {
   let lights = useFetch("https://cms.caseytimm.com/hubitat/lights", {
-    count: "loading",
-  })
+    count: "loading"
+  });
   let lightson = useFetch("https://cms.caseytimm.com/hubitat/lightson", {
-    count: "loading",
-  })
+    count: "loading"
+  });
 
   let hvac = useFetch("https://cms.caseytimm.com/hubitat/hvac", {
     "DeviceWatch-DeviceStatus": "loading",
@@ -32,11 +42,11 @@ const Smarthome = () => {
     thermostatFanMode: "loading",
     thermostatMode: "loading",
     thermostatOperatingState: "loading",
-    thermostatSetpoint: "loading",
-  })
+    thermostatSetpoint: "loading"
+  });
 
   return (
-    <Layout>
+    <>
       <Typography variant="h1">My Smart Home</Typography>
       <Container style={{ marginTop: "20px", marginBottom: "20px" }}>
         <Divider />
@@ -57,8 +67,8 @@ const Smarthome = () => {
         It is currently {hvac.temperature}°{hvac.deviceTemperatureUnit} with a
         relative humidity of {hvac.humidity}%
       </Typography>
-    </Layout>
-  )
-}
+    </>
+  );
+};
 
-export default Smarthome
+export default Smarthome;

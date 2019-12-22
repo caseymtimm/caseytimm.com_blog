@@ -1,20 +1,20 @@
-import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-import Button from "@material-ui/core/Button"
-import GitHubIcon from "@material-ui/icons/GitHub"
-import LinkedInIcon from "@material-ui/icons/LinkedIn"
-import Divider from "@material-ui/core/Divider"
-import HomeIcon from "@material-ui/icons/Home"
-import { Link } from "gatsby"
-import FaceIcon from "@material-ui/icons/Face"
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Button from "@material-ui/core/Button";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import Divider from "@material-ui/core/Divider";
+import HomeIcon from "@material-ui/icons/Home";
+import FaceIcon from "@material-ui/icons/Face";
+import { Link } from "@reach/router";
 
 const flexContainer = {
   display: "flex",
   flexDirection: "row",
-  padding: 0,
-}
+  padding: 0
+};
 
 export default function HeaderLinks({ horizontal }) {
   return (
@@ -49,7 +49,7 @@ export default function HeaderLinks({ horizontal }) {
             style={{
               textDecoration: "none",
               color: "inherit",
-              whiteSpace: "nowrap",
+              whiteSpace: "nowrap"
             }}
           >
             Smart Home
@@ -66,5 +66,5 @@ export default function HeaderLinks({ horizontal }) {
         </Button>
       </ListItem>
     </List>
-  )
+  );
 }
