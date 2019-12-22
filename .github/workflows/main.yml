@@ -4,30 +4,15 @@ on:
     branches:
       - master
 jobs:
-  install-and-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-    steps:
-      - uses: actions/checkout@master
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@master
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install and Test
-        run: |
-          yarn
-          yarn build
-        env:
-          CI: true
-
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@master
-
+      - name: Build
+        run: |
+          yarn
+          yarn build
       - name: Build and Deploy
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
