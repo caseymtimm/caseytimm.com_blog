@@ -22,3 +22,4 @@ jobs:
           port: ${{ secrets.PORT }}
           source: "build/*"
           target: "/srv/web/caseytimm.com/"
+          strip_components: 1
