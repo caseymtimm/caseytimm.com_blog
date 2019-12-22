@@ -1,26 +1,29 @@
-import React, { useState, useEffect } from "react";
-import Typography from "@material-ui/core/Typography";
-import { Divider, Container } from "@material-ui/core";
+import React, { useState, useEffect } from "react"
+import Typography from "@material-ui/core/Typography"
+import { Divider, Container } from "@material-ui/core"
 
 function useFetch(url, defaultData) {
-  const [data, updateData] = useState(defaultData);
+  const [data, updateData] = useState(defaultData)
 
-  useEffect(async () => {
-    const resp = await fetch(url);
-    const json = await resp.json();
-    updateData(json);
-  }, [url]);
+  useEffect(() => {
+    const safe = async () => {
+      const resp = await fetch(url)
+      const json = await resp.json()
+      updateData(json)
+    }
+    safe()
+  }, [url])
 
-  return data;
+  return data
 }
 
 const Smarthome = () => {
   let lights = useFetch("https://cms.caseytimm.com/hubitat/lights", {
-    count: "loading"
-  });
+    count: "loading",
+  })
   let lightson = useFetch("https://cms.caseytimm.com/hubitat/lightson", {
-    count: "loading"
-  });
+    count: "loading",
+  })
 
   let hvac = useFetch("https://cms.caseytimm.com/hubitat/hvac", {
     "DeviceWatch-DeviceStatus": "loading",
@@ -42,8 +45,8 @@ const Smarthome = () => {
     thermostatFanMode: "loading",
     thermostatMode: "loading",
     thermostatOperatingState: "loading",
-    thermostatSetpoint: "loading"
-  });
+    thermostatSetpoint: "loading",
+  })
 
   return (
     <>
@@ -68,7 +71,7 @@ const Smarthome = () => {
         relative humidity of {hvac.humidity}%
       </Typography>
     </>
-  );
-};
+  )
+}
 
-export default Smarthome;
+export default Smarthome
