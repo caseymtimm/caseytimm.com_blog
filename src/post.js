@@ -37,7 +37,7 @@ const Post = ({ id, setImage }) => {
           ? `https://cms.caseytimm.com${data.post.Image.url}`
           : undefined
       )
-  }, [data])
+  }, [data, setImage])
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>

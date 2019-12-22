@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import Hidden from "@material-ui/core/Hidden";
-import Drawer from "@material-ui/core/Drawer";
-import Menu from "@material-ui/icons/Menu";
-import HeaderLinks from "./HeaderLinks";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import { List, ListItem } from "@material-ui/core";
-import { Link } from "@reach/router";
+import React from "react"
+import { makeStyles } from "@material-ui/core/styles"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import IconButton from "@material-ui/core/IconButton"
+import Button from "@material-ui/core/Button"
+import Hidden from "@material-ui/core/Hidden"
+import Drawer from "@material-ui/core/Drawer"
+import Menu from "@material-ui/icons/Menu"
+import HeaderLinks from "./HeaderLinks"
+import useScrollTrigger from "@material-ui/core/useScrollTrigger"
+import { List, ListItem } from "@material-ui/core"
+import { Link } from "@reach/router"
 
 const useStyles = makeStyles({
   container: {
@@ -20,46 +20,46 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     width: "100%",
     "@media (min-width: 576px)": {
-      maxWidth: "540px"
+      maxWidth: "540px",
     },
     "@media (min-width: 768px)": {
-      maxWidth: "720px"
+      maxWidth: "720px",
     },
     "@media (min-width: 992px)": {
-      maxWidth: "960px"
+      maxWidth: "960px",
     },
     "@media (min-width: 1200px)": {
-      maxWidth: "1140px"
+      maxWidth: "1140px",
     },
     minHeight: "50px",
     flex: "1",
     alignItems: "center",
     justifyContent: "space-between",
     display: "flex",
-    flexWrap: "nowrap"
+    flexWrap: "nowrap",
   },
 
   transparent: {
     backgroundColor: "transparent !important",
     boxShadow: "none",
     paddingTop: "25px",
-    color: "#FFFFFF"
-  }
-});
+    color: "#FFFFFF",
+  },
+})
 
 export default function Header(props) {
-  const classes = useStyles();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const classes = useStyles()
+  const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+    setMobileOpen(!mobileOpen)
+  }
 
-  const { brand, changeColorOnScroll } = props;
+  const { brand, changeColorOnScroll } = props
   const trigger = useScrollTrigger({
     threshold: changeColorOnScroll.height,
-    disableHysteresis: true
-  });
+    disableHysteresis: true,
+  })
 
   return (
     <AppBar className={trigger ? "" : classes.transparent}>
@@ -72,7 +72,7 @@ export default function Header(props) {
                 style={{
                   textDecoration: "none",
                   color: "inherit",
-                  whiteSpace: "nowrap"
+                  whiteSpace: "nowrap",
                 }}
               >
                 {brand}
@@ -100,7 +100,7 @@ export default function Header(props) {
           anchor={"right"}
           open={mobileOpen}
           classes={{
-            paper: classes.drawerPaper
+            paper: classes.drawerPaper,
           }}
           onClose={handleDrawerToggle}
         >
@@ -108,5 +108,5 @@ export default function Header(props) {
         </Drawer>
       </Hidden>
     </AppBar>
-  );
+  )
 }
