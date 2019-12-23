@@ -3,6 +3,7 @@ import { Document, Page, pdfjs } from "react-pdf"
 import { useTheme } from "@material-ui/styles"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { Grid, Button } from "@material-ui/core"
+import "react-pdf/src/Page/AnnotationLayer.css"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
