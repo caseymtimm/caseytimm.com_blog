@@ -108,7 +108,7 @@ function App(props) {
                 <Paper>
                   <Router>
                     <PostList path="/" />
-                    <Post path="/post/:id" setImage={setImage} />
+                    <Post path="/post/:slug" setImage={setImage} />
                     <Contact path="/contact" setImage={setImage} />
                     <Smarthome path="/smarthome" />
                   </Router>
