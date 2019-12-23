@@ -5,6 +5,7 @@ import { Typography, Container } from "@material-ui/core"
 import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 import MediaBox from "./mediabox"
+import Moment from "react-moment"
 
 const POST = gql`
   query Post($where: JSON) {
@@ -68,10 +69,8 @@ const Post = ({ slug, setImage }) => {
           <Link to={`/authors/User_${post.user.FullName}`}>
             {post.user.FullName}
           </Link>
-          {` at ${post.created_at}`}
-          {post.created_at !== post.updated_at
-            ? ` and updated at ${post.updated_at}`
-            : ""}
+          <br />
+          <Moment format="MM/DD/YY HH:mm">{post.updated_at}</Moment>
         </Typography>
         <ReactMarkdown
           source={post.Content}
