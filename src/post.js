@@ -93,6 +93,9 @@ const Post = ({ slug, setImage }) => {
                   return <Typography variant="h6">{children}</Typography>
               }
             },
+            paragraph: ({ children }) => (
+              <Typography variant="body1">{children}</Typography>
+            ),
           }}
         />
         <br />
