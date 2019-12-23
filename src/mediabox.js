@@ -56,7 +56,12 @@ export default function Image(props) {
           </Document>
         </Grid>
         <Grid item>
-          <Grid container direction="row" justify="center" alignItems="center">
+          <Grid
+            container
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+          >
             <Grid item>
               {page > 1 ? (
                 <Button onClick={() => setPage(page - 1)}>Previous Page</Button>
