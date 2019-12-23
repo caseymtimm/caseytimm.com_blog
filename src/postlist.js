@@ -26,7 +26,7 @@ const IndexPage = () => {
       {data.posts.map((document, i) => {
         let { Title, ShortText, id, Image } = document
         return (
-          <Grid key={Title + ShortText} item xs={i % 3 === 0 ? 10 : 5}>
+          <Grid key={Title + ShortText} item xs={12} lg={i % 3 === 0 ? 10 : 5}>
             <PostBox
               location={`/post/${id}`}
               title={Title}
