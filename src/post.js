@@ -76,7 +76,24 @@ const Post = ({ slug, setImage }) => {
         <ReactMarkdown
           source={post.Content}
           escapeHtml={false}
-          renderers={{ image: MediaBox }}
+          renderers={{
+            image: MediaBox,
+            heading: ({ level, children }) => {
+              switch (level) {
+                case 1:
+                  return <Typography variant="h4">{children}</Typography>
+                case 2:
+                  return <Typography variant="h5">{children}</Typography>
+                case 3:
+                  return <Typography variant="h6">{children}</Typography>
+                case 4:
+                case 5:
+                case 6:
+                default:
+                  return <Typography variant="h6">{children}</Typography>
+              }
+            },
+          }}
         />
         <br />
       </Container>
