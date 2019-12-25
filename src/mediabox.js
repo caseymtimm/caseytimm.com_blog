@@ -4,6 +4,7 @@ import { useTheme } from "@material-ui/styles"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { Grid, Button } from "@material-ui/core"
 import "react-pdf/src/Page/AnnotationLayer.css"
+import Youtube from "react-youtube"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -83,6 +84,12 @@ export default function Image(props) {
         </Grid>
       </Grid>
     </>
+  ) : props.src.startsWith("https://www.youtube.com/") ? (
+    <Grid container direction="column" justify="center" alignItems="center">
+      <Grid item>
+        <Youtube videoId={props.src.split("v=")[1]} />
+      </Grid>
+    </Grid>
   ) : (
     <img
       alt="Markdown"
