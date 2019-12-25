@@ -25,7 +25,8 @@
     "react-image": "^2.2.2",
     "react-markdown": "^4.2.2",
     "react-pdf": "^4.1.0",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "react-youtube": "^7.9.0"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=6114 start",
