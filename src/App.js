@@ -16,7 +16,7 @@ import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 import ApolloClient from "apollo-boost"
 import { ApolloProvider } from "@apollo/react-hooks"
-import { Router, Link } from "@reach/router"
+import { Router, Link, Location } from "@reach/router"
 import PostList from "./postlist"
 import Post from "./post"
 import Contact from "./contact"
@@ -56,12 +56,6 @@ function App(props) {
   const { coverPrecent } = props
   const [image, setImage] = useState()
 
-  const imagesrc =
-    typeof image === "undefined"
-      ? !loading && !error
-        ? `http://cms.caseytimm.com${data.largeimages[0].picture.url}`
-        : undefined
-      : image
   const height = 200
   return (
     <>
@@ -70,7 +64,24 @@ function App(props) {
         <CssBaseline />
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item>
-            <img style={{ marginTop: "100px" }} alt="Title" src={imagesrc} />
+            <Location>
+              {({ location }) => {
+                console.log(location)
+                const imagesrc =
+                  typeof image === "undefined" || location.pathname === "/"
+                    ? !loading && !error
+                      ? `http://cms.caseytimm.com${data.largeimages[0].picture.url}`
+                      : undefined
+                    : image
+                return (
+                  <img
+                    style={{ marginTop: "100px" }}
+                    alt="Title"
+                    src={imagesrc}
+                  />
+                )
+              }}
+            </Location>
           </Grid>
         </Grid>
 
@@ -97,7 +108,7 @@ function App(props) {
                 <Paper>
                   <Router>
                     <PostList path="/" />
-                    <Post path="/post/:id" setImage={setImage} />
+                    <Post path="/post/:slug" setImage={setImage} />
                     <Contact path="/contact" setImage={setImage} />
                     <Smarthome path="/smarthome" />
                   </Router>

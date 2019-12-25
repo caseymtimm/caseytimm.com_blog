@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/react-hooks"
 const POSTS = gql`
   {
     posts(sort: "id:desc", where: { Published: true }) {
-      id
+      slug
       Title
       ShortText
       Image {
@@ -24,11 +24,11 @@ const IndexPage = () => {
   return (
     <Grid container justify="center" spacing={2}>
       {data.posts.map((document, i) => {
-        let { Title, ShortText, id, Image } = document
+        let { Title, ShortText, slug, Image } = document
         return (
-          <Grid key={Title + ShortText} item xs={i % 3 === 0 ? 10 : 5}>
+          <Grid key={Title + ShortText} item xs={12} lg={i % 3 === 0 ? 10 : 5}>
             <PostBox
-              location={`/post/${id}`}
+              location={`/post/${slug}`}
               title={Title}
               shortText={ShortText}
               image={

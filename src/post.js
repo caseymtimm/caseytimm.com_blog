@@ -5,10 +5,11 @@ import { Typography, Container } from "@material-ui/core"
 import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 import MediaBox from "./mediabox"
+import Moment from "react-moment"
 
 const POST = gql`
-  query Post($post: ID!) {
-    post(id: $post) {
+  query Post($where: JSON) {
+    posts(limit: 1, where: $where, sort: "id:desc") {
       ShortText
       slug
       Title
@@ -25,16 +26,22 @@ const POST = gql`
   }
 `
 
-const Post = ({ id, setImage }) => {
+const Post = ({ slug, setImage }) => {
   const { loading, error, data } = useQuery(POST, {
-    variables: { post: id },
+    variables: {
+      where: {
+        slug,
+      },
+    },
   })
+
+  const post = data ? data.posts[0] : undefined
 
   useEffect(() => {
     if (data)
       setImage(
-        data.Image !== "undefined"
-          ? `https://cms.caseytimm.com${data.post.Image.url}`
+        post.Image !== "undefined"
+          ? `https://cms.caseytimm.com${post.Image.url}`
           : undefined
       )
   }, [data, setImage])
@@ -54,23 +61,41 @@ const Post = ({ id, setImage }) => {
     >*/}
       <Container flex>
         <Typography variant="h1" paragraph>
-          {data.post.Title}
+          {post.Title}
         </Typography>
-        <Typography variant="subtitle">{data.post.ShortText}</Typography>
+        <Typography variant="subtitle">{post.ShortText}</Typography>
         <Typography paragraph variant="subtitle">
           by{" "}
-          <Link to={`/authors/User_${data.post.user.FullName}`}>
-            {data.post.user.FullName}
+          <Link to={`/authors/User_${post.user.FullName}`}>
+            {post.user.FullName}
           </Link>
-          {` at ${data.post.created_at}`}
-          {data.post.created_at !== data.updated_at
-            ? ` and updated at ${data.post.updated_at}`
-            : ""}
+          <br />
+          <Moment format="MM/DD/YY HH:mm">{post.updated_at}</Moment>
         </Typography>
         <ReactMarkdown
-          source={data.post.Content}
+          source={post.Content}
           escapeHtml={false}
-          renderers={{ image: MediaBox }}
+          renderers={{
+            image: MediaBox,
+            heading: ({ level, children }) => {
+              switch (level) {
+                case 1:
+                  return <Typography variant="h4">{children}</Typography>
+                case 2:
+                  return <Typography variant="h5">{children}</Typography>
+                case 3:
+                  return <Typography variant="h6">{children}</Typography>
+                case 4:
+                case 5:
+                case 6:
+                default:
+                  return <Typography variant="h6">{children}</Typography>
+              }
+            },
+            paragraph: ({ children }) => (
+              <Typography variant="body1">{children}</Typography>
+            ),
+          }}
         />
         <br />
       </Container>
