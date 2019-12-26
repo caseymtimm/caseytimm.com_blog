@@ -14,6 +14,7 @@ import Switch from "@material-ui/core/Switch"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import { AuthContext } from "./authContext"
+import { CopyBlock, dracula } from "react-code-blocks"
 
 const POST = gql`
   query Post($where: JSON) {
@@ -80,6 +81,14 @@ const MarkdownViewer = ({ content }) => (
       },
       paragraph: ({ children }) => (
         <Typography variant="body1">{children}</Typography>
+      ),
+      code: props => (
+        <CopyBlock
+          text={props.value}
+          language={props.language}
+          wrapLines
+          theme={dracula}
+        />
       ),
     }}
   />
