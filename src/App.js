@@ -16,14 +16,12 @@ import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 import ApolloClient from "apollo-boost"
 import { ApolloProvider } from "@apollo/react-hooks"
-import { setContext } from "apollo-link-context"
 import { Router, Link, Location } from "@reach/router"
 import PostList from "./postlist"
 import Post from "./post"
 import Contact from "./contact"
 import Smarthome from "./smarthome"
 import AuthProvider from "./authContext"
-import { createHttpLink } from "apollo-link-http"
 
 const IMAGE = gql`
   {
