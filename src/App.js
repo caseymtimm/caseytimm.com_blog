@@ -6,7 +6,7 @@ import {
 } from "@material-ui/core/styles"
 import { orange } from "@material-ui/core/colors"
 import Header from "./header/header.js"
-import "./layout.css"
+//import "./layout.css"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import Paper from "@material-ui/core/Paper"
 import { Grid, Container, Box, Typography } from "@material-ui/core"
@@ -94,29 +94,31 @@ function App(props) {
             color: theme.palette.background.default,
           }}
         />
-        <Grid container spacing={3} alignItems="center" justify="center">
-          <Grid item xs={1} />
-          <Grid item xs={10}>
-            <Box justifyContent="center">
-              <Container
-                style={{
-                  position: "relative",
-                  zIndex: "3",
-                  marginTop: `-${height * (coverPrecent / 100)}px`,
-                }}
-              >
-                <Paper>
-                  <Router>
-                    <PostList path="/" />
-                    <Post path="/post/:slug" setImage={setImage} />
-                    <Contact path="/contact" setImage={setImage} />
-                    <Smarthome path="/smarthome" />
-                  </Router>
-                </Paper>
-              </Container>
-            </Box>
-          </Grid>
-          <Grid item xs={1} />
+        <Grid
+          container
+          spacing={3}
+          alignItems="center"
+          justify="center"
+          direction="row"
+        >
+          <Container
+            style={{
+              position: "relative",
+              zIndex: "3",
+              marginTop: `-${height * (coverPrecent / 100)}px`,
+            }}
+          >
+            <Grid item xs={12}>
+              <Paper>
+                <Router>
+                  <PostList path="/" />
+                  <Post path="/post/:slug" setImage={setImage} />
+                  <Contact path="/contact" setImage={setImage} />
+                  <Smarthome path="/smarthome" />
+                </Router>
+              </Paper>
+            </Grid>
+          </Container>
         </Grid>
         <Grid container spacing={3} alignItems="center" justify="center">
           <Grid item xs={4}>
