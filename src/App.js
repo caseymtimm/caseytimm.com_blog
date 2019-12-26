@@ -16,15 +16,14 @@ import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 import ApolloClient from "apollo-boost"
 import { ApolloProvider } from "@apollo/react-hooks"
+import { setContext } from "apollo-link-context"
 import { Router, Link, Location } from "@reach/router"
 import PostList from "./postlist"
 import Post from "./post"
 import Contact from "./contact"
 import Smarthome from "./smarthome"
-
-const client = new ApolloClient({
-  uri: "https://cms.caseytimm.com/graphql",
-})
+import AuthProvider from "./authContext"
+import { createHttpLink } from "apollo-link-http"
 
 const IMAGE = gql`
   {
@@ -45,10 +44,27 @@ const theme = responsiveFontSizes(
   })
 )
 
+const client = new ApolloClient({
+  uri: "https://cms.caseytimm.com/graphql",
+  request: operation => {
+    const token = JSON.parse(localStorage.getItem("authBody"))
+    operation.setContext({
+      headers: {
+        authorization:
+          token && token.data && token.data.jwt
+            ? `Bearer ${token.data.jwt}`
+            : "",
+      },
+    })
+  },
+})
+
 const Wrapper = props => (
-  <ApolloProvider client={client}>
-    <App props={props} />
-  </ApolloProvider>
+  <AuthProvider>
+    <ApolloProvider client={client}>
+      <App props={props} />
+    </ApolloProvider>
+  </AuthProvider>
 )
 
 function App(props) {
@@ -66,7 +82,6 @@ function App(props) {
           <Grid item>
             <Location>
               {({ location }) => {
-                console.log(location)
                 const imagesrc =
                   typeof image === "undefined" || location.pathname === "/"
                     ? !loading && !error
