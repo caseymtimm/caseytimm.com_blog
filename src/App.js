@@ -6,12 +6,10 @@ import {
 } from "@material-ui/core/styles"
 import { orange } from "@material-ui/core/colors"
 import Header from "./header/header.js"
-//import "./layout.css"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import Paper from "@material-ui/core/Paper"
 import { Grid, Container, Box, Typography } from "@material-ui/core"
 import Helmet from "react-helmet"
-import "prismjs/themes/prism-twilight.css"
 import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 import ApolloClient from "apollo-boost"
@@ -88,7 +86,7 @@ function App(props) {
                     : image
                 return (
                   <img
-                    style={{ marginTop: "100px" }}
+                    style={{ marginTop: "100px", width: "100%" }}
                     alt="Title"
                     src={imagesrc}
                   />
