@@ -13,6 +13,9 @@ const POSTS = gql`
       Image {
         url
       }
+      Image_thumbnail {
+        url
+      }
     }
   }
 `
@@ -24,7 +27,7 @@ const IndexPage = () => {
   return (
     <Grid container justify="center" spacing={2}>
       {data.posts.map((document, i) => {
-        let { Title, ShortText, slug, Image } = document
+        let { Title, ShortText, slug, Image, Image_thumbnail } = document
         return (
           <Grid key={Title + ShortText} item xs={12} lg={i % 3 === 0 ? 10 : 5}>
             <PostBox
@@ -32,7 +35,11 @@ const IndexPage = () => {
               title={Title}
               shortText={ShortText}
               image={
-                Image ? `https://cms.caseytimm.com${Image.url}` : undefined
+                Image_thumbnail
+                  ? `https://cms.caseytimm.com${Image_thumbnail.url}`
+                  : Image
+                  ? `https://cms.caseytimm.com${Image.url}`
+                  : undefined
               }
             ></PostBox>
           </Grid>
