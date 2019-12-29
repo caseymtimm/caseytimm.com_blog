@@ -86,7 +86,10 @@ function App(props) {
                     : image
                 return (
                   <img
-                    style={{ marginTop: "100px", width: "100%" }}
+                    style={{
+                      marginTop: "100px",
+                      width: "100%",
+                    }}
                     alt="Title"
                     src={imagesrc}
                   />
