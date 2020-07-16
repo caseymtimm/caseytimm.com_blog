@@ -1,11 +1,11 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import React from "react"
+import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
 
 const Contact = ({ data, setImage }) => {
   setImage(
-    "https://cms.caseytimm.com/uploads/fb75842ee6d7454e9121abb1896e5612.jpg"
-  );
+    "https://cms2.caseytimm.com/uploads/fb75842ee6d7454e9121abb1896e5612.jpg"
+  )
   return (
     <Grid container>
       <Grid item>
@@ -17,7 +17,7 @@ const Contact = ({ data, setImage }) => {
         </Typography>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

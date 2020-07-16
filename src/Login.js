@@ -21,7 +21,7 @@ export default function LoginDialog({ open, setOpen }) {
   }
 
   const handleLogin = async () => {
-    const response = await fetch("https://cms.caseytimm.com/auth/local", {
+    const response = await fetch("https://cms2.caseytimm.com/auth/local", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,8 +64,8 @@ export default function LoginDialog({ open, setOpen }) {
             type="username"
             fullWidth
             value={user}
-            onChange={e => setUser(e.currentTarget.value)}
-            onKeyDown={e => {
+            onChange={(e) => setUser(e.currentTarget.value)}
+            onKeyDown={(e) => {
               if (e.keyCode === 13) handleLogin()
             }}
           />
@@ -76,8 +76,8 @@ export default function LoginDialog({ open, setOpen }) {
             label="Password"
             type="password"
             value={password}
-            onChange={e => setPassword(e.currentTarget.value)}
-            onKeyDown={e => {
+            onChange={(e) => setPassword(e.currentTarget.value)}
+            onKeyDown={(e) => {
               if (e.keyCode === 13) handleLogin()
             }}
             fullWidth

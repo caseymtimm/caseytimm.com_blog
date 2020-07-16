@@ -18,14 +18,14 @@ function useFetch(url, defaultData) {
 }
 
 const Smarthome = () => {
-  let lights = useFetch("https://cms.caseytimm.com/hubitat/lights", {
+  let lights = useFetch("https://cms2.caseytimm.com/hubitat/lights", {
     count: "loading",
   })
-  let lightson = useFetch("https://cms.caseytimm.com/hubitat/lightson", {
+  let lightson = useFetch("https://cms2.caseytimm.com/hubitat/lightson", {
     count: "loading",
   })
 
-  let hvac = useFetch("https://cms.caseytimm.com/hubitat/hvac", {
+  let hvac = useFetch("https://cms2.caseytimm.com/hubitat/hvac", {
     "DeviceWatch-DeviceStatus": "loading",
     coolingSetpoint: "loading",
     deviceAlive: "loading",

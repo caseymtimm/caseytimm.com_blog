@@ -41,8 +41,8 @@ const theme = responsiveFontSizes(
 )
 
 const client = new ApolloClient({
-  uri: "https://cms.caseytimm.com/graphql",
-  request: operation => {
+  uri: "https://cms2.caseytimm.com/graphql",
+  request: (operation) => {
     const token = JSON.parse(localStorage.getItem("authBody"))
     operation.setContext({
       headers: {
@@ -55,7 +55,7 @@ const client = new ApolloClient({
   },
 })
 
-const Wrapper = props => (
+const Wrapper = (props) => (
   <AuthProvider>
     <ApolloProvider client={client}>
       <App props={props} />
@@ -81,7 +81,7 @@ function App(props) {
                 const imagesrc =
                   typeof image === "undefined" || location.pathname === "/"
                     ? !loading && !error
-                      ? `http://cms.caseytimm.com${data.largeimages[0].picture.url}`
+                      ? `http://cms2.caseytimm.com${data.largeimages[0].picture.url}`
                       : undefined
                     : image
                 return (

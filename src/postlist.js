@@ -36,9 +36,9 @@ const IndexPage = () => {
               shortText={ShortText}
               image={
                 Image_thumbnail
-                  ? `https://cms.caseytimm.com${Image_thumbnail.url}`
+                  ? `https://cms2.caseytimm.com${Image_thumbnail.url}`
                   : Image
-                  ? `https://cms.caseytimm.com${Image.url}`
+                  ? `https://cms2.caseytimm.com${Image.url}`
                   : undefined
               }
             ></PostBox>

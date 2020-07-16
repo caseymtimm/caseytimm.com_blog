@@ -82,7 +82,7 @@ const MarkdownViewer = ({ content }) => (
       paragraph: ({ children }) => (
         <Typography variant="body1">{children}</Typography>
       ),
-      code: props => (
+      code: (props) => (
         <CopyBlock
           text={props.value}
           language={props.language}
@@ -115,7 +115,7 @@ const Post = ({ slug, setImage }) => {
     if (data) {
       setImage(
         post.Image !== "undefined"
-          ? `https://cms.caseytimm.com${post.Image.url}`
+          ? `https://cms2.caseytimm.com${post.Image.url}`
           : undefined
       )
       setMarkdown(post.Content)
@@ -130,7 +130,7 @@ const Post = ({ slug, setImage }) => {
       {/*<Layout
       largeImage={
         data.Image !== "undefined"
-          ? `https://cms.caseytimm.com${data.post.Image.url}`
+          ? `https://cms2.caseytimm.com${data.post.Image.url}`
           : undefined
       }
       coverPrecent={25}
@@ -177,7 +177,7 @@ const Post = ({ slug, setImage }) => {
                   control={
                     <Switch
                       checked={edit}
-                      onChange={e => {
+                      onChange={(e) => {
                         setEdit(e.currentTarget.checked)
                       }}
                       value="Edit"
@@ -196,7 +196,7 @@ const Post = ({ slug, setImage }) => {
             onChange={setMarkdown}
             selectedTab={selectedTab}
             onTabChange={setSelectedTab}
-            generateMarkdownPreview={markdown =>
+            generateMarkdownPreview={(markdown) =>
               Promise.resolve(<MarkdownViewer content={markdown} />)
             }
           />

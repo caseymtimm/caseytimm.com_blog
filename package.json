@@ -31,7 +31,7 @@
     "react-mde": "^8.0.1",
     "react-moment": "^0.9.7",
     "react-pdf": "^4.1.0",
-    "react-scripts": "3.3.0",
+    "react-scripts": "3.4.1",
     "react-youtube": "^7.9.0"
   },
   "scripts": {
