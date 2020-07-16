@@ -81,7 +81,7 @@ function App(props) {
                 const imagesrc =
                   typeof image === "undefined" || location.pathname === "/"
                     ? !loading && !error
-                      ? `http://cms2.caseytimm.com${data.caseytimmComHeader.Header.url}`
+                      ? `https://cms2.caseytimm.com${data.caseytimmComHeader.Header.url}`
                       : undefined
                     : image
                 return (
