@@ -23,8 +23,8 @@ import AuthProvider from "./authContext"
 
 const IMAGE = gql`
   {
-    largeimages(limit: 1, where: { current: true }, sort: "id:desc") {
-      picture {
+    caseytimmComHeader {
+      Header {
         url
       }
     }
@@ -81,7 +81,7 @@ function App(props) {
                 const imagesrc =
                   typeof image === "undefined" || location.pathname === "/"
                     ? !loading && !error
-                      ? `http://cms2.caseytimm.com${data.largeimages[0].picture.url}`
+                      ? `http://cms2.caseytimm.com${data.caseytimmComHeader.Header.url}`
                       : undefined
                     : image
                 return (
